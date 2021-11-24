@@ -21,7 +21,7 @@ Tu as deux options d'environnement de développement:
 * CodeSandbox, un environnement déjà tout prêt.
 * Environnement local sur ta machine. Utilise cette façon de faire si tu préfères développer avec tes outils habituels. Tu peux suivre les étapes ci-dessous pour installer le nécessaire.
 
-### Codesanbox
+### CodeSandbox
 
 [Cliques ici](https://codesandbox.io/s/novatize-front-end-challenge-niqqy) pour accéder le CodeSandbox
 
