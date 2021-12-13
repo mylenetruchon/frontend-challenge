@@ -14,7 +14,7 @@ initCookieBanner();
 populateDoggoBreedSelect();
 
 function initFormListeners(formToInit) {
-  formToInit.addEventListener("submit", e => {
+  formToInit.addEventListener("submit", (e) => {
     e.preventDefault();
     if (validateAllInputs()) {
       displaySuccessModal();
@@ -28,14 +28,14 @@ function initModals(successModalToInit) {
   for (let el of closeButtons) {
     el.onclick = function () {
       successModalToInit.style.display = "none";
-    }
+    };
   }
 
   window.onclick = function (event) {
     if (event.target == successModal) {
       successModalToInit.style.display = "none";
     }
-  }
+  };
 }
 
 function initCookieBanner() {
@@ -53,15 +53,15 @@ function initCookieBanner() {
 
     submitButton.disabled = true;
     cookieBanner.style.display = "none";
-  }
+  };
 }
 
 function populateDoggoBreedSelect() {
-  fetch('https://api.devnovatize.com/frontend-challenge')
+  fetch("https://api.devnovatize.com/frontend-challenge")
     .then(
       function (response) {
         if (!response.ok) {
-          console.log('Error calling external API. Status Code: ' +
+          console.log("Error calling external API. Status Code: " +
             response.status);
           return;
         }
@@ -73,7 +73,7 @@ function populateDoggoBreedSelect() {
       }
     )
     .catch(function (err) {
-      console.log('Fetch Error : ', err);
+      console.log("Fetch Error : ", err);
     });
 }
 
@@ -83,14 +83,15 @@ function fillSelectElem(selectElem, dataToFill) {
     optionElem.innerHTML = element;
 
     if (element.toLowerCase() === "labernese") {
-      optionElem.setAttribute("selected", "selected")
+      optionElem.setAttribute("selected", "selected");
     }
     selectElem.appendChild(optionElem);
   });
 }
 
 function validateAllInputs() {
-  let allInputValids = validateInput(firstName) &&
+  let allInputValids =
+    validateInput(firstName) &&
     validateInput(lastName) &&
     validateInput(doggoName) &&
     validateInput(doggoBreed) &&
@@ -105,7 +106,7 @@ function validateInput(element, validationFunction) {
 
   inputValid ? setSuccessInput(element) : setErrorInput(element);
 
-  return inputValid
+  return inputValid;
 }
 
 function isInputValid(element, validationFunction) {
