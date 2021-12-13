@@ -105,7 +105,7 @@ Pour reproduire:
 - Clique sur _Submit_ une seconde fois
 - L'icône d'erreur est toujours visible et le champs _Last name_ demeure rouge
 
-On voudrait qu'après avoir cliqué sur _Submit_ une seconde fois, seul le champ _First name_ soit rouge. Exactement comme la première fois où tu cliques sur Submit.
+On voudrait qu'après avoir cliqué sur _Submit_ une seconde fois, seul le premier champ en erreur soit rouge et que les status précédents ne soient plus affichés.
 
 ### :star: Features manquantes
 
@@ -125,25 +125,19 @@ On veut maintenant la peaufiner en l'ordonnant alphabétiquement.
 
 Voir [Obtenir une liste de races de chien](#obtenir-une-liste-de-races-de-chien) pour la documentation de l'API.
 
-**:white_circle: Styler et modifier la bannière d'acceptation des cookies**
-
-Une fois que l'utilisateur clique sur Accept, il ne devrait plus recevoir ce message, même s'il rafraîchit la page. Si toutefois il clique sur _Reject_, le bouton _Submit_ du form devrait se désactiver et rafraîchir la page devrait remontrer la demande d'acceptation à nouveau.
-
-Pour ton information, le HTML de la banière existe déjà, mais le style et la logique d'affichage n'existent pas.
-
-**:white_circle: Ajouter une bannière d'acceptation des cookies**
+**:white_circle: Styler et modifier le comportement de la bannière d'acceptation des cookies**
 
 En te basant sur la maquette, tu dois ajouter une bannière en haut de page qui demande à l'utilisateur d'accepter l'utilisation des cookies.
 
-Une fois que l'utilisateur clique sur Accept, il ne devrait plus recevoir ce message, même s'il rafraîchit la page. Si toutefois il clique sur _Reject_, le bouton _Submit_ du form devrait se désactiver et rafraîchir la page devrait remontrer la demande d'acceptation à nouveau.
+Une fois que l'utilisateur clique sur Accept, il ne devrait plus recevoir ce message, même s'il rafraîchit la page ou ferme et réouvre son navigateur. Si toutefois il clique sur _Reject_, le bouton _Submit_ du form devrait se désactiver et rafraîchir la page devrait remontrer la demande d'acceptation à nouveau.
 
-Le texte à utiliser dans la bannière est déjà disponible en commentaire dans index.html; pas besoin de le réécrire à la main.
+Pour ton information, le HTML de la bannière existe déjà, mais le style et la logique d'affichage n'existent pas.
 
 **:white_circle: Appeler un API pour créer le profile**
 
 Au moment de cliquer sur _Submit_, si tous les champs sont valides, l'interface devrait appeler l'API de Novatize pour créer le profile.
 
-Les champs existants du formulaire ont déjà les bons noms pour correspondre avec ce qui est attendu par l'API. À toi d'ajouter le bon nom pour les champs de password, transformer le formulaire en JSON et l'envoyer à l'API.
+Les données entrées dans le formulaire devraient être envoyées dans le body de la requête à l'API dans le format requis et ensuite l'interface devrait se baser sur la réponse pour savoir si l'opération s'est complétée avec succès ou non.
 
 Voir [Vérifier le formulaire et créer un profile](#vérifier-le-formulaire-et-créer-un-profil) pour la documentation de l'API.
 
