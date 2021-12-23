@@ -25,7 +25,7 @@ Tu as deux options d'environnement de développement:
 
 [Cliques ici](https://codesandbox.io/s/novatize-front-end-challenge-niqqy) pour accéder le CodeSandbox
 
-Un environnement en ligne qui contient exactement le même code que le repo Github. Si tu rencontre des problèmes avec l'environnement local, celui-là ne demande aucune préparation afin d'être up and running.
+Un environnement en ligne qui contient exactement le même code que le repo Github. Si tu rencontres des problèmes avec l'environnement local, celui-là ne demande aucune préparation afin d'être up and running.
 
 Dès que tu modifies quelque chose dans CodeSandbox, une copie est créée que tu pourras nous envoyer par la suite en utilisant la fonction _Share_.
 
@@ -54,7 +54,7 @@ C'est aussi possible de nous envoyer ton code par courriel dans un .zip, mais c'
 
 #### Démarrer l'interface localement
 
-Finalement, ouvre-toi un terminal dans le dossier où tu as placé le repo et exécute les commandes suivantes.
+Finalement, ouvres-toi un terminal dans le dossier où tu as placé le repo et exécute les commandes suivantes.
 
 `npm install`
 
@@ -98,7 +98,7 @@ Si un champ a été évalué en erreur et est ensuite évalué valide, le contou
 
 Pour reproduire:
 
-- Rempli le champ _First name_
+- Remplis le champ _First name_
 - Clique sur _Submit_
 - Le champ _First name_ est maintenant encadré en vert
 - Efface le texte du champ _First name_
@@ -117,13 +117,13 @@ Change la font utilisée dans toute la page pour celle de ton choix. Afin de se 
 
 Au-dessus des champs _Password_ et _Confirm password_, ajoute des champs _Email_ et _Confirm email_. Au moment de cliquer sur le bouton _Submit_, l'interface doit vérifier que le email respecte un format valide et que les deux champs contiennent le même courriel. Sans quoi, une erreur doit être affichée sur l'input, de la même manière que les autres inputs existants.
 
-**:white_circle: Améliorer la liste de races de chien**
+**:white_circle: Améliorer la liste des races de chiens**
 
-La liste est déjà remplie par l'appel à un API de Novatize qui retourne une liste de races de chien.
+La liste est déjà remplie par l'appel à un API de Novatize qui retourne une liste de races de chiens.
 
 On veut maintenant la peaufiner en l'ordonnant alphabétiquement.
 
-Voir [Obtenir une liste de races de chien](#obtenir-une-liste-de-races-de-chien) pour la documentation de l'API.
+Voir [Obtenir une liste des races de chiens](#obtenir-une-liste-de-races-de-chien) pour la documentation de l'API.
 
 **:white_circle: Styler et modifier le comportement de la bannière d'acceptation des cookies**
 
@@ -133,21 +133,21 @@ Une fois que l'utilisateur clique sur Accept, il ne devrait plus recevoir ce mes
 
 Pour ton information, le HTML de la bannière existe déjà, mais le style et la logique d'affichage n'existent pas.
 
-**:white_circle: Appeler un API pour créer le profile**
+**:white_circle: Appeler un API pour créer le profil**
 
-Au moment de cliquer sur _Submit_, si tous les champs sont valides, l'interface devrait appeler l'API de Novatize pour créer le profile.
+Au moment de cliquer sur _Submit_, si tous les champs sont valides, l'interface devrait appeler l'API de Novatize pour créer le profil.
 
 Les données entrées dans le formulaire devraient être envoyées dans le body de la requête à l'API dans le format requis et ensuite l'interface devrait se baser sur la réponse pour savoir si l'opération s'est complétée avec succès ou non.
 
-Voir [Vérifier le formulaire et créer un profile](#vérifier-le-formulaire-et-créer-un-profil) pour la documentation de l'API.
+Voir [Vérifier le formulaire et créer un profil](#vérifier-le-formulaire-et-créer-un-profil) pour la documentation de l'API.
 
 **:white_circle: Afficher une modale en cas d'erreur sur l'API**
 
-Faisant suite à la feature d'appel de l'API pour créer le profile, si l'API retourne une erreur, tu dois afficher une modale d'erreur et y afficher le message retourné par l'API. Pour ton information, une modale est déjà affichée en cas de succès, tu peux évidemment t'en inspirer.
+Faisant suite à la feature d'appel de l'API pour créer le profil, si l'API retourne une erreur, tu dois afficher une modale d'erreur et y afficher le message retourné par l'API. Pour ton information, une modale est déjà affichée en cas de succès, tu peux évidemment t'en inspirer.
 
 Pour tester plus facilement, entres `j.doe@novatize.com` comme courriel. L'API te retournera une erreur à tout coup.
 
-Voir [Vérifier le formulaire et créer un profile](#vérifier-le-formulaire-et-créer-un-profil) pour la documentation de l'API.
+Voir [Vérifier le formulaire et créer un profil](#vérifier-le-formulaire-et-créer-un-profil) pour la documentation de l'API.
 
 #### :star: Layout Tablette
 
@@ -165,11 +165,11 @@ Lorsque le width est plus petit que 770px, l'interface devrait réagir comme sui
 
 **:white_circle: Éviter de télécharger les images en mobile**
 
-Maintenant que les images n'ont plus à s'afficher en mobile, il ne faudrait plus les télécharger pour rien. Si la résolution est inférieur au seuil mobile défini ci-haut, ton navigateur ne devrait pas télécharger les images.
+Maintenant que les images n'ont plus à s'afficher en mobile, il ne faudrait plus les télécharger pour rien. Si la résolution est inférieure au seuil mobile défini ci-haut, ton navigateur ne devrait pas télécharger les images.
 
 **:white_circle: Rendre le header responsive**
 
-Le header de la page est présentement conçu pour afficher 4 liens avec assez d'espace pour qu'ils soient un à côté de l'autre. Par contre, dans une résolution mobile, les liens s'empilent un par dessus l'autre. Le client aimeraient que tous les liens soient dispobiles dans un menu hamburger dès que la résolution a une largeur mobile.
+Le header de la page est présentement conçu pour afficher 4 liens avec assez d'espace pour qu'ils soient un à côté de l'autre. Par contre, dans une résolution mobile, les liens s'empilent un par-dessus l'autre. Le client aimerait que tous les liens soient disponibles dans un menu hamburger dès que la résolution a une largeur mobile.
 
 Une maquette de ce menu mobile est disponible plus haut.
 
@@ -238,7 +238,7 @@ Body:
 
 _Si le formulaire est accepté_
 
-_Le profile n'est pas réellement créé et rien n'est sauvegardé, tu peux t'en servir autant que tu veux._
+_Le profil n'est pas réellement créé et rien n'est sauvegardé, tu peux t'en servir autant que tu veux._
 
 Status code: 201
 
