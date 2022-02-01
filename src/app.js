@@ -1,6 +1,7 @@
 const form = document.getElementById("contact-form");
 const firstName = document.getElementById("first-name");
 const lastName = document.getElementById("last-name");
+const email = document.getElementById("email");
 const doggoName = document.getElementById("doggo-name");
 const doggoBreed = document.getElementById("doggo-breed");
 const password = document.getElementById("password");
@@ -93,6 +94,7 @@ function validateAllInputs() {
   let allInputValids =
     validateInput(firstName) &&
     validateInput(lastName) &&
+    validateInput(email, validateEmail) &&
     validateInput(doggoName) &&
     validateInput(doggoBreed) &&
     validateInput(password, validatePassword) &&
@@ -120,15 +122,23 @@ function validatePassword(password) {
   return re.test(String(password));
 }
 
+function validateEmail(email) {
+  let re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return re.test(String(email));
+}
+
 function setErrorInput(input) {
   const formControl = input.parentElement.parentElement;
+  formControl.classList.remove("success")
   formControl.classList.add("error");
 }
 
 function setSuccessInput(input) {
   const formControl = input.parentElement.parentElement;
+  formControl.classList.remove("error")
   formControl.classList.add("success");
 }
+
 
 function displaySuccessModal() {
   var modal = document.getElementById("modal-success");
