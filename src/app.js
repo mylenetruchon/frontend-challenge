@@ -134,3 +134,8 @@ function displaySuccessModal() {
   var modal = document.getElementById("modal-success");
   modal.style.display = "block";
 }
+
+function displayErrorModal() {
+  var modal = document.getElementById("modal-error");
+  modal.style.display = "block";
+}
