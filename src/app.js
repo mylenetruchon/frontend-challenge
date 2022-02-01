@@ -122,13 +122,16 @@ function validatePassword(password) {
 
 function setErrorInput(input) {
   const formControl = input.parentElement.parentElement;
+  formControl.classList.remove("success")
   formControl.classList.add("error");
 }
 
 function setSuccessInput(input) {
   const formControl = input.parentElement.parentElement;
+  formControl.classList.remove("error")
   formControl.classList.add("success");
 }
+
 
 function displaySuccessModal() {
   var modal = document.getElementById("modal-success");
