@@ -8,6 +8,8 @@ const confirmPassword = document.getElementById("confirm-password");
 
 const successModal = document.getElementById("modal-success");
 
+const api_url = "https://api.devnovatize.com/frontend-challenge";
+
 initFormListeners(form);
 initModals(successModal);
 initCookieBanner();
@@ -17,6 +19,8 @@ function initFormListeners(formToInit) {
   formToInit.addEventListener("submit", (e) => {
     e.preventDefault();
     if (validateAllInputs()) {
+      // TODO : ajouter méthode ici
+      postUser();
       displaySuccessModal();
     }
   });
@@ -54,6 +58,34 @@ function initCookieBanner() {
     submitButton.disabled = true;
     cookieBanner.style.display = "none";
   };
+}
+
+function postUser() {
+  const body = {
+    "first-name": firstName.value,
+    "last-name": lastName.value,
+    "doggo-name": doggoName.value,
+    "doggo-breed": doggoBreed.value,
+    "email": "example@domain.com", // TODO : mettre valeur dynamique
+    "confirm-email": "example@domain.com",
+    "password": password.value,
+    "confirm-password": confirmPassword.value,
+  }
+
+  fetch(api_url, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body),
+  }).then(
+      function (response) {
+        if (!response.ok) {
+          console.log("Error calling external API. Status Code: " + response.status);
+          return;
+        }
+      }
+  )
 }
 
 function populateDoggoBreedSelect() {
