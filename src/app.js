@@ -2,17 +2,19 @@ const form = document.getElementById("contact-form");
 const firstName = document.getElementById("first-name");
 const lastName = document.getElementById("last-name");
 const email = document.getElementById("email");
+const confirmEmail = document.getElementById("confirm-email");
 const doggoName = document.getElementById("doggo-name");
 const doggoBreed = document.getElementById("doggo-breed");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirm-password");
 
 const successModal = document.getElementById("modal-success");
+const errorModal = document.getElementById("modal-error");
 
 const api_url = "https://api.devnovatize.com/frontend-challenge";
 
 initFormListeners(form);
-initModals(successModal);
+initModals(successModal, errorModal);
 initCookieBanner();
 populateDoggoBreedSelect();
 
@@ -20,22 +22,18 @@ function initFormListeners(formToInit) {
   formToInit.addEventListener("submit", (e) => {
     e.preventDefault();
     if (validateAllInputs()) {
-      const status = postUser();
-      if (status[0]) {
-        displaySuccessModal();
-      } else {
-        displayErrorModal(status[1])
-      }
+      postUser();
     }
   });
 }
 
-function initModals(successModalToInit) {
+function initModals(successModalToInit, errorModalToInit) {
   let closeButtons = document.getElementsByClassName("modal__close");
 
   for (let el of closeButtons) {
     el.onclick = function () {
       successModalToInit.style.display = "none";
+      errorModalToInit.style.display = "none";
     };
   }
 
@@ -70,8 +68,8 @@ function postUser() {
     "last-name": lastName.value,
     "doggo-name": doggoName.value,
     "doggo-breed": doggoBreed.value,
-    "email": "example@domain.com", // TODO : mettre valeur dynamique
-    "confirm-email": "example@domain.com",
+    "email": email.value,
+    "confirm-email": confirmEmail.value,
     "password": password.value,
     "confirm-password": confirmPassword.value,
   }
@@ -85,10 +83,12 @@ function postUser() {
   }).then(
       function (response) {
         if (!response.ok) {
+          displayErrorModal(response.status)
           console.log("Error calling external API. Status Code: " + response.status);
-          return [response.ok, response.statusText];
+          return;
+        } else {
+          displaySuccessModal();
         }
-        return [response.ok, response.statusText]
       }
   )
 }
@@ -131,6 +131,7 @@ function validateAllInputs() {
     validateInput(firstName) &&
     validateInput(lastName) &&
     validateInput(email, validateEmail) &&
+    validateInput(confirmEmail, validateConfirmEmail) &&
     validateInput(doggoName) &&
     validateInput(doggoBreed) &&
     validateInput(password, validatePassword) &&
@@ -163,6 +164,13 @@ function validateEmail(email) {
   return re.test(String(email));
 }
 
+function validateConfirmEmail() {
+  if (email.value === confirmEmail.value) {
+    return true;
+  }
+  return false;
+}
+
 function setErrorInput(input) {
   const formControl = input.parentElement.parentElement;
   formControl.classList.remove("success")
@@ -181,7 +189,10 @@ function displaySuccessModal() {
   modal.style.display = "block";
 }
 
-function displayErrorModal(statusText) {
+function displayErrorModal(status) {
+  var statusText = document.getElementById("status-error");
+  statusText.innerHTML = status;
+
   var modal = document.getElementById("modal-error");
   modal.style.display = "block";
 }
