@@ -1,6 +1,7 @@
 const form = document.getElementById("contact-form");
 const firstName = document.getElementById("first-name");
 const lastName = document.getElementById("last-name");
+const email = document.getElementById("email");
 const doggoName = document.getElementById("doggo-name");
 const doggoBreed = document.getElementById("doggo-breed");
 const password = document.getElementById("password");
@@ -93,6 +94,7 @@ function validateAllInputs() {
   let allInputValids =
     validateInput(firstName) &&
     validateInput(lastName) &&
+    validateInput(email, validateEmail) &&
     validateInput(doggoName) &&
     validateInput(doggoBreed) &&
     validateInput(password, validatePassword) &&
@@ -118,6 +120,11 @@ function isInputValid(element, validationFunction) {
 function validatePassword(password) {
   let re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; // 8 chars, lower, upper and digits
   return re.test(String(password));
+}
+
+function validateEmail(email) {
+  let re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return re.test(String(email));
 }
 
 function setErrorInput(input) {
