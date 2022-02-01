@@ -19,9 +19,12 @@ function initFormListeners(formToInit) {
   formToInit.addEventListener("submit", (e) => {
     e.preventDefault();
     if (validateAllInputs()) {
-      // TODO : ajouter méthode ici
-      postUser();
-      displaySuccessModal();
+      const status = postUser();
+      if (status[0]) {
+        displaySuccessModal();
+      } else {
+        displayErrorModal(status[1])
+      }
     }
   });
 }
@@ -82,8 +85,9 @@ function postUser() {
       function (response) {
         if (!response.ok) {
           console.log("Error calling external API. Status Code: " + response.status);
-          return;
+          return [response.ok, response.statusText];
         }
+        return [response.ok, response.statusText]
       }
   )
 }
@@ -167,7 +171,7 @@ function displaySuccessModal() {
   modal.style.display = "block";
 }
 
-function displayErrorModal() {
+function displayErrorModal(statusText) {
   var modal = document.getElementById("modal-error");
   modal.style.display = "block";
 }
