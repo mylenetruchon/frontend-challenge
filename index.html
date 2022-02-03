@@ -27,6 +27,15 @@
         <p class="h2">&#x1F389; Profile successfully created. &#x1F389;</p>
       </div>
     </div>
+    <div id="modal-error" class="modal">
+      <div class="modal__content">
+        <span class="modal__close">&times;</span>
+        <p>
+          <span class="h2">Oops. There has been a problem with the server. Error</span>
+          <span class="h2" id="status-error"></span>
+        </p>
+      </div>
+    </div>
     <div id="cookie-banner" class="cookie-banner">
       <div class="cookie-banner__content">
         <p class="h2">&#x1F36A; This website uses cookies &#x1F36A;</p>
@@ -99,6 +108,28 @@
           <div class="form__control-input">
             <select name="doggo-breed" id="doggo-breed">
             </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form__control column">
+            <label>Your email</label>
+            <div class="form__control-input">
+              <input type="text" placeholder="jane@myemail.com" name="email" id="email" />
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle"></i>
+            </div>
+            <small>Invalid email</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form__control column">
+            <label>Confirm your email</label>
+            <div class="form__control-input">
+              <input type="text" placeholder="jane@myemail.com" name="confirm-email" id="confirm-email" />
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle"></i>
+            </div>
+            <small>Must be same value</small>
           </div>
         </div>
         <div class="row">

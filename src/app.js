@@ -1,15 +1,20 @@
 const form = document.getElementById("contact-form");
 const firstName = document.getElementById("first-name");
 const lastName = document.getElementById("last-name");
+const email = document.getElementById("email");
+const confirmEmail = document.getElementById("confirm-email");
 const doggoName = document.getElementById("doggo-name");
 const doggoBreed = document.getElementById("doggo-breed");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirm-password");
 
 const successModal = document.getElementById("modal-success");
+const errorModal = document.getElementById("modal-error");
+
+const api_url = "https://api.devnovatize.com/frontend-challenge";
 
 initFormListeners(form);
-initModals(successModal);
+initModals(successModal, errorModal);
 initCookieBanner();
 populateDoggoBreedSelect();
 
@@ -17,17 +22,18 @@ function initFormListeners(formToInit) {
   formToInit.addEventListener("submit", (e) => {
     e.preventDefault();
     if (validateAllInputs()) {
-      displaySuccessModal();
+      postUser();
     }
   });
 }
 
-function initModals(successModalToInit) {
+function initModals(successModalToInit, errorModalToInit) {
   let closeButtons = document.getElementsByClassName("modal__close");
 
   for (let el of closeButtons) {
     el.onclick = function () {
       successModalToInit.style.display = "none";
+      errorModalToInit.style.display = "none";
     };
   }
 
@@ -56,6 +62,37 @@ function initCookieBanner() {
   };
 }
 
+function postUser() {
+  const body = {
+    "first-name": firstName.value,
+    "last-name": lastName.value,
+    "doggo-name": doggoName.value,
+    "doggo-breed": doggoBreed.value,
+    "email": email.value,
+    "confirm-email": confirmEmail.value,
+    "password": password.value,
+    "confirm-password": confirmPassword.value,
+  }
+
+  fetch(api_url, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body),
+  }).then(
+      function (response) {
+        if (!response.ok) {
+          displayErrorModal(response.status)
+          console.log("Error calling external API. Status Code: " + response.status);
+          return;
+        } else {
+          displaySuccessModal();
+        }
+      }
+  )
+}
+
 function populateDoggoBreedSelect() {
   fetch("https://api.devnovatize.com/frontend-challenge")
     .then(
@@ -68,7 +105,7 @@ function populateDoggoBreedSelect() {
 
         response.json().then(function (data) {
           var selectElem = document.getElementById("doggo-breed");
-          fillSelectElem(selectElem, data);
+          fillSelectElem(selectElem, data.sort());
         });
       }
     )
@@ -93,6 +130,8 @@ function validateAllInputs() {
   let allInputValids =
     validateInput(firstName) &&
     validateInput(lastName) &&
+    validateInput(email, validateEmail) &&
+    validateInput(confirmEmail, validateConfirmEmail) &&
     validateInput(doggoName) &&
     validateInput(doggoBreed) &&
     validateInput(password, validatePassword) &&
@@ -120,17 +159,40 @@ function validatePassword(password) {
   return re.test(String(password));
 }
 
+function validateEmail(email) {
+  let re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return re.test(String(email));
+}
+
+function validateConfirmEmail() {
+  if (email.value === confirmEmail.value) {
+    return true;
+  }
+  return false;
+}
+
 function setErrorInput(input) {
   const formControl = input.parentElement.parentElement;
+  formControl.classList.remove("success")
   formControl.classList.add("error");
 }
 
 function setSuccessInput(input) {
   const formControl = input.parentElement.parentElement;
+  formControl.classList.remove("error")
   formControl.classList.add("success");
 }
 
+
 function displaySuccessModal() {
   var modal = document.getElementById("modal-success");
+  modal.style.display = "block";
+}
+
+function displayErrorModal(status) {
+  var statusText = document.getElementById("status-error");
+  statusText.innerHTML = status;
+
+  var modal = document.getElementById("modal-error");
   modal.style.display = "block";
 }
